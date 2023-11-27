@@ -30,6 +30,23 @@ class Program
         /*Program program = new Program();
         string ненадо = program.GetJson();
         Console.WriteLine(ненадо);*/
+
+        Node<string> first = new Node<string>("asdas");
+
+        Node<string> second = new Node<string>("3253253");
+        first.NextValue = second;
+
+        Node<string> third = new Node<string>("zxxzxzx");
+        second.NextValue = third;
+
+        // перебор значений в односвязном списке
+        Node<string> next = first;
+        do
+        {
+            Console.WriteLine(next.Value);
+            next = next.NextValue;
+        } 
+        while (next != null);
     }
 }
 
@@ -132,5 +149,16 @@ public static class ObjExtension
     public static string GetJson<T>(this T obj) where T : IJsonAble
     { 
         return JsonSerializer.Serialize(obj);
+    }
+}
+
+public class Node<T>
+{ 
+    public Node<T> NextValue { get; set; }
+    public T Value { get; set; }
+
+    public Node(T value)
+    {
+        Value = value;
     }
 }
